@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">计算日差</string>
+    <string name="choose_date">"选择时间: "</string>
+    <string name="choose_date_start">选择开始时间</string>
+    <string name="choose_date_end">选择结束时间</string>
+    <string name="calculate">计算结果: </string>
+    <string name="between_date_format">%1$d年%2$d月%3$d天</string>
+</resources>

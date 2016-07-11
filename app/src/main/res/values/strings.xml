@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BetweenDate</string>
+    <string name="choose_date">Choose Date: </string>
+    <string name="choose_date_start">Select Start Date</string>
+    <string name="choose_date_end">Select End Date</string>
+    <string name="calculate">"Calculate: "</string>
+    <string name="between_date_format">%1$dY%2$dM%3$dD</string>
+</resources>
