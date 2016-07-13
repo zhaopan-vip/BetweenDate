@@ -5,4 +5,5 @@
     <string name="choose_date_end">Select End Date</string>
     <string name="calculate">"Calculate: "</string>
     <string name="between_date_format">%1$dY%2$dM%3$dD</string>
+    <string name="between_date_lastmonthday_format">last month total days: %1$d</string>
 </resources>

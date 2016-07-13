@@ -12,6 +12,14 @@ public class Utility {
         public int year;
         public int month;
         public int day;
+        public int lastMonthDays; // 用来计算浮点月数
+
+        // make private
+        private BetweenDate() {}
+
+        public float getFloatMonth() {
+            return year * 12 + month + day * 1f / lastMonthDays;
+        }
     }
     public static BetweenDate calcBetweenDate(GregorianCalendar c1, GregorianCalendar c2) {
         GregorianCalendar date1 = c1;
@@ -52,6 +60,26 @@ public class Utility {
             int checkDay = checkDate.get(Calendar.DAY_OF_MONTH);
             // so we can calculate days by day1 to checkDay & 1 - day2
             bd.day = (checkDay > day1? (checkDay - day1): 0) + day2;
+            bd.lastMonthDays = checkDay;
+        } else if (bd.day > 0 || (bd.day == 0 && bd.month == 0)) {
+            // eg. 2016.7.12 - 2016.7.13
+            int nextMonth = month2 + 1;
+            int nextYear = year2;
+            if (nextMonth >= 12) {
+                nextYear += 1;
+                nextMonth -= 12;
+            }
+            // goto day of next month the first, then back to month2 last day
+            GregorianCalendar checkDate = new GregorianCalendar(nextYear, nextMonth, 1);
+            checkDate.setTimeInMillis(checkDate.getTimeInMillis() - 24 * 3600 * 1000);
+            int checkDay = checkDate.get(Calendar.DAY_OF_MONTH);
+            bd.lastMonthDays = checkDay;
+        } else {
+            // eg. 2016.6.13 - 2016.7.13
+            GregorianCalendar checkDate = new GregorianCalendar(year2, month2, 1);
+            checkDate.setTimeInMillis(checkDate.getTimeInMillis() - 24 * 3600 * 1000);
+            int checkDay = checkDate.get(Calendar.DAY_OF_MONTH);
+            bd.lastMonthDays = checkDay;
         }
         return bd;
     }

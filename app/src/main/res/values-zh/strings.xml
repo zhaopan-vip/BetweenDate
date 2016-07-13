@@ -6,4 +6,5 @@
     <string name="choose_date_end">选择结束时间</string>
     <string name="calculate">计算结果: </string>
     <string name="between_date_format">%1$d年%2$d月%3$d天</string>
+    <string name="between_date_lastmonthday_format">最后一月天总数: %1$d</string>
 </resources>

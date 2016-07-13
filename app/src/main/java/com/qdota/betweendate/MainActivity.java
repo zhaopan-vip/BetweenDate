@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     TextView mText1;
     TextView mText2;
     TextView mText3;
+    TextView mText4;
     GregorianCalendar mCalendar1;
     GregorianCalendar mCalendar2;
     @Override
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         mText1 = (TextView) findViewById(R.id.text1);
         mText2 = (TextView) findViewById(R.id.text2);
         mText3 = (TextView) findViewById(R.id.text3);
+        mText4 = (TextView) findViewById(R.id.text4);
 
         mCalendar1 = new GregorianCalendar();
         mCalendar2 = new GregorianCalendar();
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         setCalendar(mCalendar1, year, monthOfYear, dayOfMonth);
                         updateText(mText1, mCalendar1);
-                        setBetweenResult(mText3, mCalendar1, mCalendar2);
+                        setBetweenResult(mText3, mText4, mCalendar1, mCalendar2);
                     }
                 });
             }
@@ -58,14 +60,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         setCalendar(mCalendar2, year, monthOfYear, dayOfMonth);
                         updateText(mText2, mCalendar2);
-                        setBetweenResult(mText3, mCalendar1, mCalendar2);
+                        setBetweenResult(mText3, mText4, mCalendar1, mCalendar2);
                     }
                 });
             }
         });
         updateText(mText1, mCalendar1);
         updateText(mText2, mCalendar2);
-        setBetweenResult(mText3, mCalendar1, mCalendar2);
+        setBetweenResult(mText3, mText4, mCalendar1, mCalendar2);
     }
 
     public static void setCalendar(Calendar c, int year, int monthOfYear, int dayOfMonth) {
@@ -78,12 +80,16 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(DateFormat.getDateFormat(textView.getContext()).format(c.getTime()));
     }
 
-    public static void setBetweenResult(TextView textView, GregorianCalendar c1, GregorianCalendar c2) {
+    public static void setBetweenResult(TextView tv3, TextView tv4, GregorianCalendar c1, GregorianCalendar c2) {
         Utility.BetweenDate bd = Utility.calcBetweenDate(c1, c2);
-        textView.setText(
+        tv3.setText(
                 String.format(
-                        textView.getContext().getString(R.string.between_date_format),
+                        tv3.getContext().getString(R.string.between_date_format),
                         bd.year, bd.month, bd.day));
+        tv4.setText(
+                String.format(
+                        tv4.getContext().getString(R.string.between_date_lastmonthday_format),
+                        bd.lastMonthDays));
     }
 
     public static class DatePickerFragment extends DialogFragment {
